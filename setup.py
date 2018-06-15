@@ -4,65 +4,58 @@
 
 from os import path
 from setuptools import setup, find_packages
-from qautils.files import read_file
-from qautils.files import path_format
+from qautils.files import read
 
 
-VERSION = "0.0.0"
+PACKAGE_NAME = 'qautils'
+AUTHOR = "Netzulo SQA developer"
+AUTHOR_EMAIL = "netzuleando@gmail.com"
+DESCRIPTION = ("QA utils library provides"
+               " methods compatibility with"
+               " all python versions")
+VERSION = "0.0.1"
 CURR_PATH = "{}{}".format(path.abspath(path.dirname(__file__)), '/')
-
-
-def read(file_name=None, is_encoding=True, ignore_raises=False):
-    """Read file"""
-    if file_name is None:
-        raise Exception("File name not provided")
-    return read_file(
-        is_encoding=is_encoding,
-        ignore_raises=ignore_raises,
-        file_path=path_format(
-            file_path=CURR_PATH,
-            file_name=file_name,
-            ignore_raises=ignore_raises))
-
+INSTALL_REQUIRES = []
+SETUP_REQUIRES = [
+    'pytest-runner',
+    'tox',
+]
+TESTS_REQUIRE = [
+    'pytest-html',
+    'pytest-dependency',
+    'pytest-cov',
+    'pytest-benchmark',
+    'pytest-benchmark[histogram]',
+]
+KEYWORDS = ['qautils', 'qa', 'files', 'json']
+GIT_URL = "https://github.com/netzulo/qautils"
+GIT_URL_DOWNLOAD = GIT_URL.join("/tarball/v{}".format(VERSION))
+LICENSE_FILE = read(
+    file_path=CURR_PATH,
+    file_name="LICENSE",
+    is_encoding=False,
+    ignore_raises=True)
+README_FILE = read(
+    file_path=CURR_PATH,
+    file_name="README.rst")
 
 setup(
-    name='qautils',
+    name=PACKAGE_NAME,
     version=VERSION,
-    license=read("LICENSE", is_encoding=False, ignore_raises=True),
+    license=LICENSE_FILE,
     packages=find_packages(exclude=['tests']),
-    description='QA utils library it is for be used on another Q',
-    long_description=read("README.rst"),
-    author='Netzulo Open Source',
-    author_email='netzuleando@gmail.com',
-    url='https://github.com/netzulo/qautils',
-    download_url='https://github.com/netzulo/qautils/tarball/v{}'.format(
-        VERSION),
-    keywords=[
-        'qautils'
-    ],
-    install_requires=[
-        'appdirs',
-        'packaging==16.8',
-        'pyparsing',
-        'six==1.10.0',
-        'nose==1.3.7',
-        'nose-testconfig==0.10',
-        'pytest',
-        'wget',
-    ],
-    setup_requires=[
-        'pytest-runner',
-        'tox',
-    ],
-    tests_require=[
-        'pytest-html',
-        'pytest-dependency',
-        'pytest-cov',
-        'pytest-benchmark',
-        'pytest-benchmark[histogram]'
-    ],
+    description=DESCRIPTION,
+    long_description=README_FILE,
+    author=AUTHOR,
+    author_email=AUTHOR_EMAIL,
+    url=GIT_URL,
+    download_url=GIT_URL_DOWNLOAD,
+    keywords=KEYWORDS,
+    install_requires=INSTALL_REQUIRES,
+    setup_requires=SETUP_REQUIRES,
+    tests_require=TESTS_REQUIRE,
     classifiers=[
-        'Development Status :: 4 - Beta',
+        'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
         'Topic :: Software Development :: Build Tools',
         'Programming Language :: Python :: 2.7',

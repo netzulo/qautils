@@ -6,7 +6,6 @@
 """
 
 
-from qautils import configs
 from qautils import files
 
-__all__ = ['configs', 'files']
+__all__ = ['files']

@@ -59,7 +59,20 @@ def read_file(is_json=False, file_path=None, encoding='utf-8',
     return text
 
 
-def settings(file_path='bdocutils/configs/', file_name='settings.json',
+def read(file_path='./', file_name=None, is_encoding=True, ignore_raises=False):
+    """Read file"""
+    if file_name is None:
+        raise Exception("File name not provided")
+    return read_file(
+        is_encoding=is_encoding,
+        ignore_raises=ignore_raises,
+        file_path=path_format(
+            file_path=file_path,
+            file_name=file_name,
+            ignore_raises=ignore_raises))
+
+
+def settings(file_path='./', file_name='settings.json',
              is_abspath=True):
     """Returns file settings as a dict to be use on qacode lib"""
     return read_file(is_json=True,
