@@ -13,7 +13,7 @@ AUTHOR_EMAIL = "netzuleando@gmail.com"
 DESCRIPTION = ("QA utils library provides"
                " methods compatibility with"
                " all python versions")
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 CURR_PATH = "{}{}".format(path.abspath(path.dirname(__file__)), '/')
 INSTALL_REQUIRES = []
 SETUP_REQUIRES = [
@@ -29,7 +29,7 @@ TESTS_REQUIRE = [
 ]
 KEYWORDS = ['qautils', 'qa', 'files', 'json']
 GIT_URL = "https://github.com/netzulo/qautils"
-GIT_URL_DOWNLOAD = GIT_URL.join("/tarball/v{}".format(VERSION))
+GIT_URL_DOWNLOAD = "{}/tarball/v{}".format(GIT_URL, VERSION)
 LICENSE_FILE = read(
     file_path=CURR_PATH,
     file_name="LICENSE",
